@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>强播内容分组页</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon-standard.css">
+        <link rel="stylesheet" type="text/css" href="css/qb_cbatch.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    </head>
+    <body>
+        <table id="dg"></table>
+        <div id="dlg" class="easyui-dialog" style="width:500px;height:600px;" data-options="buttons:'#btn_dlg',closed:true,modal:true">
+            <table id="dg_content"></table>
+        </div>
+        <div id="btn_dlg">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
+        </div>
+        <div id="dlg_cb" class="easyui-dialog" style="width: 500px;height: 310px;" data-options="buttons:'#btn_dlg_cb',closed:true,modal:true">
+            <form id="fm" method="POST" style="margin:0px;padding:20px 20px;">
+                <div style="margin-bottom: 10px;">
+                    <input id="BatchName" name="BatchName" class="easyui-textbox" data-options="label:'分组名称:',required:true,missingMessage:'请输入名称'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input id="BatchType" name="BatchType" class="easyui-combobox" data-options="label:'分组类型:',required:true,missingMessage:'请选择分组',panelHeight:100,editable:false,textField:'text',valueField:'value',
+                    data:[{text:'视频',value:'SP'},{text:'直播',value:'ZB'},{text:'消息',value:'XX'}]" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input id="BatchMemo" name="BatchMemo" class="easyui-textbox" data-options="label:'分组备注:'" style="width:100%">
+                </div>
+            </form>
+        </div>
+        <div id="btn_dlg_cb">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveCB()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_cb').dialog('close')">取消</a>
+        </div>
+        <script src="js/qb_cbatch.js"></script>
+    </body>
+</html>

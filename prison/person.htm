@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>个人中心页</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="css/person.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    </head>
+    <body>
+        <table id="dg"></table>
+        <div id="dlgNName" class="easyui-dialog" style="width:400px;height:190px;" data-options="title:'修改昵称',buttons:'#btnNName',closed:true,modal:true">
+            <form id="fm" method="post" style="margin:0;padding:20px 20px">
+                <div style="margin-bottom: 5px;">
+                    <input name="Nickname" class="easyui-textbox" data-options="label:'新昵称：',required:true,missingMessage:'请输入新昵称'" style="width:100%">
+                </div>
+            </form>
+        </div>
+        <div id="btnNName">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgNName').dialog('close')">取消</a>
+        </div>
+        <script type="text/javascript" src="js/person.js"></script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>权限配置页</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="css/cfg_role.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    </head>
+    <body>
+        <table id="dg"></table>
+        <div id="dlg" class="easyui-dialog" style="width:500px;height:280px;" data-options="buttons:'#btn-dlg',closed:true,modal:true">
+            <form id="fm" method="POST" style="margin:0px;padding:20px 20px;">
+                <div style="margin-bottom: 10px;">
+                    <input name="PermissionName" class="easyui-textbox" required="true" label="权限名:" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input name="PermissionValue" class="easyui-textbox" required="true" label="权限值:" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input name="PermissionSort" class="easyui-textbox" required="true" label="排顺序:" value="99" style="width:100%">
+                </div>
+            </form>
+        </div>
+        <div id="btn-dlg">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
+        </div>
+        <script src="js/cfg_permission.js"></script>
+    </body>
+</html>

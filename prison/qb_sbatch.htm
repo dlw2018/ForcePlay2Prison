@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>强播终端分组页</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon-standard.css">
+        <link rel="stylesheet" type="text/css" href="css/qb_sbatch.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    </head>
+    <body>
+        <table id="dg"></table>
+        <div id="dlgBanding" class="easyui-dialog" style="width:500px;height:600px;" data-options="buttons:'#btnBanding',closed:true,modal:true">
+            <form id="fm" method="POST" style="margin:0px;padding:20px 20px;">
+                <div style="height: 350px;margin-bottom: 10px;">
+                    <ul id="stbTree"></ul>
+                </div>
+                <div style="margin-bottom: 5px;">
+                    <input id="ruleBatch" name="ruleBatch" class="easyui-combobox" data-options="required:true,label:'规则分组:',missingMessage:'请选择规则',panelHeight:100,editable:false,textField:'text',valueField:'value'" style="width:100%">
+                </div>
+            </form>
+        </div>
+        <div id="btnBanding">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveBanding()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgBanding').dialog('close')">取消</a>
+        </div>
+        <script src="js/qb_sbatch.js"></script>
+    </body>
+</html>

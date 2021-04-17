@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>强播排班页</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="css/qb_schedule.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    </head>
+    <body>
+        <table id="dg"></table>
+        <div id="dlg" class="easyui-dialog" style="width:450px;height:480px;" data-options="buttons:'#btn_dlg',closed:true,modal:true">
+            <form id="fm" method="POST" style="margin:0px;padding:20px 20px;">
+                <div style="margin-bottom: 10px;">
+                    <input id="StartDate" name="StartDate" class="easyui-datebox" data-options="required:true,label:'开始日期:',missingMessage:'请选择日期',formatter:formatDate" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input id="StartHour" name="StartHour" class="easyui-combobox" data-options="required:true,label:'开始小时:',missingMessage:'请选择小时',panelHeight:100,editable:false,textField:'text',valueField:'value',method:'get',url:'data/hour.json'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input id="StartMinute" name="StartMinute" class="easyui-combobox" data-options="required:true,label:'开始分钟:',missingMessage:'请选择分钟',panelHeight:100,editable:false,textField:'text',valueField:'value',method:'get',url:'data/minute.json'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input id="Duration" name="Duration" class="easyui-textbox" data-options="required:true,label:'持续时长:',missingMessage:'请填写时长，单位分',value:'0'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input id="PlayType" name="PlayType" class="easyui-combobox" data-options="required:true,label:'播放类型:',missingMessage:'请选择类型',panelHeight:100,editable:false,textField:'text',valueField:'value',
+                    data:[{text:'视频',value:'SP'},{text:'直播',value:'ZB'},{text:'消息',value:'XX'}],onChange:onReturnTypeChange" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input id="ContentBID" name="ContentBID" class="easyui-combobox" data-options="required:true,label:'内容分组:',missingMessage:'请选择内容分组名',panelHeight:100,editable:false,textField:'text',valueField:'value'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 5px;">
+                    <input id="RuleID" name="RuleID" class="easyui-combobox" data-options="required:true,label:'所属规则',missingMessage:'请选择强播规则',panelHeight:100,editable:false,textField:'text',valueField:'value'" style="width:100%">
+                </div>
+            </form>
+        </div>
+        <div id="btn_dlg">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
+        </div>
+        <script src="js/qb_schedule.js"></script>
+    </body>
+</html>

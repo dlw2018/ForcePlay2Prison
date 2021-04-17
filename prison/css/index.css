@@ -1,0 +1,19 @@
+body{
+    margin: 0px;padding: 0px;
+}
+.north{
+    height: 60px;
+    line-height: 60px;
+    padding-left: 5px;
+    font-size: 18px;
+    background-color: cadetblue;
+}
+.west{
+    width: 207px;
+}
+.south{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #A9FACD;
+}

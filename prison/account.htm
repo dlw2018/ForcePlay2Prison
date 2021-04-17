@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>账户管理页</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="css/account.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    </head>
+    <body>
+        <table id="dg"></table>
+        <div id="dlg" class="easyui-dialog" style="width:500px;height:310px;" data-options="buttons:'#btn_dlg',closed:true,modal:true">
+            <form id="fm" method="POST" style="margin:0px;padding:20px 20px;">
+                <div style="margin-bottom: 10px;">
+                    <input name="Account" class="easyui-textbox" data-options="required:true,label:'账号:',missingMessage:'请输入账号'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input name="Password" class="easyui-passwordbox" data-options="required:true,label:'密码:',missingMessage:'请输入密码'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input name="Nickname" class="easyui-textbox" data-options="required:true,label:'昵称:',missingMessage:'请输入昵称'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 5px;">
+                    <input id="RoleName" name="RoleName" class="easyui-combobox" data-options="label:'角色:',editable:false,data:roleData,valueField:'id',textField:'text',required:true,missingMessage:'请选择角色'" style="width:100%">
+                </div>
+            </form>
+        </div>
+        <div id="btn_dlg">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
+        </div>
+        <script src="js/util/common.js"></script>
+        <script src="js/account.js"></script>
+    </body>
+</html>

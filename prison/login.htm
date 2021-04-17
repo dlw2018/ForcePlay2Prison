@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>互动电视终端强播系统（V1.0）</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    </head>
+    <body>
+        <div id="login" class="lg_main">
+            <div class="easyui-panel" title="终端强播->用户登录" style="width:400px">
+                <div style="padding:20px 50px 10px 50px">
+                    <form id="fm" method="POST" class="easyui-form">
+                        <div style="margin-bottom:10px">
+                            <input class="easyui-textbox" style="width:100%;height:40px;padding:12px" type="text" id="userAcct" name="userAcct" data-options="prompt:'输入账号',iconCls:'icon-man',iconWidth:38">
+                        </div>
+                        <div style="margin-bottom:20px">
+                            <input class="easyui-textbox" style="width:100%;height:40px;padding:12px" type="password" id="userPwd" name="userPwd" data-options="prompt:'输入密码',iconCls:'icon-lock',iconWidth:38">
+                        </div>
+                    </form>
+                    <div style="text-align:center;padding:5px">
+                        <a id="btnSubmit" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a id="btnReset" href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">重置</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/login.js"></script>
+    </body>
+</html>

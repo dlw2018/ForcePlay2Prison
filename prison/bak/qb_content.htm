@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>强播内容页</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="easyui/extension/texteditor/texteditor.css">
+        <link rel="stylesheet" type="text/css" href="css/qb_content.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="easyui/extension/texteditor/jquery.texteditor.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    </head>
+    <body>
+        <table id="dg"></table>
+        <div id="dlg" class="easyui-dialog" style="width:700px;height:600px;" data-options="buttons:'#btn_dlg',closed:true,modal:true">
+            <form id="fm" method="POST" style="margin:0px;padding:20px 20px;">
+                <div style="margin-bottom: 10px;">
+                    <input id="ContentName" name="ContentName" class="easyui-textbox" data-options="label:'节目名称:',labelPosition:'top',required:true,missingMessage:'请输入名称'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input id="ContentType" name="ContentType" class="easyui-combobox" data-options="label:'节目类型:',labelPosition:'top',required:true,missingMessage:'请选择类型',panelHeight:100,editable:false,textField:'text',valueField:'value',
+                    data:[{text:'视频',value:'SP'},{text:'直播',value:'ZB'},{text:'消息',value:'XX'}],onChange:onContentTypeChange" style="width:100%">
+                </div>
+                <div id="tb" style="margin-bottom: 10px;display: block;">
+                    <input id="ContentValue" name="ContentValue" class="easyui-textbox" data-options="width:'100%',label:'节目内容:',labelPosition:'top',required:true,missingMessage:'请填写内容'">
+                </div>
+                <div id="te" style="margin-bottom: 10px;display: none;">
+                    <div id="te2" class="easyui-texteditor" data-options="title:'节目内容',toolbar:['bold','italic','-','justifyleft','justifycenter','justifyright','justifyfull','-','insertorderedlist','insertunorderedlist','outdent','indent']" style="width: 100%;height: 250px"></div>
+                </div>
+                <div style="margin-bottom: 5px;">
+                    <input id="ContentMemo" name="ContentMemo" class="easyui-textbox" data-options="label:'备注信息:',labelPosition:'top'" style="width:100%">
+                </div>
+            </form>
+        </div>
+        <div id="btn_dlg">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
+        </div>
+        <script src="js/qb_content.js"></script>
+    </body>
+</html>

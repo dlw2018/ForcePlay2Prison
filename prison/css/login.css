@@ -1,0 +1,12 @@
+body{
+    margin: 0px;padding: 0px;background-color: #ccccff;
+}
+.lg_main{
+    position: absolute;
+    width: 400px;
+    height: 214px;
+    top:50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -200px;
+}

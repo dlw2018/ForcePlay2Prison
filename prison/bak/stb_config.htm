@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>终端管理页</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="css/stb_config.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    </head>
+    <body>
+        <table id="dg"> 
+            <thead> 
+                <tr> 
+                    <th field="StbID" width="25%">终端号</th> 
+                    <th field="Region1" width="15%">区域一</th> 
+                    <th field="Region2" width="15%">区域二</th> 
+                    <th field="Region3" width="15%" >区域三</th> 
+                    <th field="LastTime" width="15%">终端状态</th> 
+                </tr> 
+            </thead> 
+        </table>
+        <div id="dlg" class="easyui-dialog" style="width:550px;height:320px;" data-options="buttons:'#btn-dlg',closed:true,modal:true">
+            <form id="fm" method="post" style="margin:0;padding:20px 20px">
+                <div style="margin-bottom: 10px;">
+                    <input name="StbID" class="easyui-textbox" required="true" label="终端号:" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input name="Region1" class="easyui-textbox" required="true" label="区域一:" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input name="Region2" class="easyui-textbox" required="true" label="区域二:" style="width:100%">
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <input name="Region3" class="easyui-textbox" required="true" label="区域三:" style="width:100%">
+                </div>
+            </form>
+        </div>
+        <div id="btn-dlg">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
+        </div>
+        <script src="js/stb_config.js"></script>
+    </body>
+</html>
