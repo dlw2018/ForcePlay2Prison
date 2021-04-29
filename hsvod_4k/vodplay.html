@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="page-view-size" content="1920*1080" />
+    <title>4K播放测试</title>
+    <style>
+        body{margin:0px;padding:0px;background:transparent}
+        #navBar{position:absolute;top:915px;left:225px;width:1470px;height:60px;z-index:1}
+        #navInfo{position:absolute;top:0px;left:0px;width:100%;height:30px;line-height:30px;z-index:2}
+        #navProgressBar{position:absolute;top:30px;left:0px;width:0%;height:30px;z-index:2}
+        .barStyle{background-color:gray}
+        .infoStyle{color:white;font-size:30px}
+        .progressBarStyle{background-color:orange}
+    </style>
+</head>
+<body>
+    <video width="1920" height="1080" style="position:absolute;top:0px;left:0px;visibility:hidden">
+        Your browser does not support the video tag.
+    </video>
+    <div id="navBar" style="visibility:hidden" class="barStyle">
+        <div id="navInfo" class="infoStyle"></div>
+        <div id="navProgressBar" class="progressBarStyle"></div>
+    </div>
+    <script src="js/common/utility.js"></script>
+    <script src="js/common/vue-bridge-webview.js"></script>
+    <script src="js/common/key_event_public_4k.js"></script>
+    <script src="js/common/Prev.js"></script>
+    <script src="js/vodplay.js"></script>
+</body>
+</html>

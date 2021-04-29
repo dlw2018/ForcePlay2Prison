@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EChart Demo</title>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script>
+        var objData = null;
+        var chartDemo = echarts.init(document.getElementById('main'));
+        // getSummaryBarorLineChart();
+        getSummaryPieorAngleChart();
+        function getSummaryBarorLineChart(){
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3904/UIL/Chart/Handler.ashx?action=vod_summary&items=1&code=1",
+                async: true,
+                success: function(data){
+                    objData = eval("("+data+")");
+                    if (objData.Success){
+                        // 数据处理
+                        var yearName = objData.Data[0].Year;
+                        /* var xNames = [];
+                        var yValues = [];
+                        for (var i=0;i<objData.Data[0].VodCount.length;i++){
+                            xNames.push(objData.Data[0].VodCount[i].name);
+                        }
+                        for (var j=0;j<objData.Data[0].VodCount.length;j++){
+                            yValues.push(objData.Data[0].VodCount[j].value);
+                        } */
+                        // 填入数据
+                        chartDemo.setOption({
+                            title: {
+                                text: yearName+'年统计概要'
+                            },
+                            tooltip: {},
+                            legend: {data:['次数']},
+                            xAxis: {
+                               // data: []
+                            },
+                            yAxis: {},
+                            series: [{
+                                type: 'bar',
+                                name: '次数',
+                                data: objData.Data[0].VodCount
+                            }]
+                        });
+                    }
+                    else{}
+                },
+                error:function(){console.log("error");}
+            });
+        }
+        function getSummaryPieorAngleChart(){
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3904/UIL/Chart/Handler.ashx?action=vod_summary&items=1&code=1",
+                async: true,
+                success: function(data){
+                    objData = eval("("+data+")");
+                    if (objData.Success){
+                        // 数据处理
+                        var yearName = objData.Data[0].Year;
+                        /* var nameValues = [];
+                        for (var i=0;i<objData.Data[0].VodCount.length;i++){
+                            var nameValue = {};
+                            nameValue.name = objData.Data[0].VodCount[i].name;
+                            nameValue.value = objData.Data[0].VodCount[i].value;
+                            nameValues.push(nameValue);
+                        } */
+                        // 填入数据
+                        chartDemo.setOption({
+                            title: {
+                                text: yearName+'年统计概要'
+                            },
+                            tooltip: {},
+                            legend: {data:['次数']},
+                            series: [{
+                                type: 'pie',
+                                // roseType: 'angle',
+                                radius: '65%',
+                                center: ['50%', '50%'],
+                                // data: nameValues
+                                data: objData.Data[0].VodCount
+                            }]
+                        });
+                    }
+                    else{}
+                },
+                error:function(){console.log("error");}
+            });
+        }
+    </script>
+</body>
+</html>

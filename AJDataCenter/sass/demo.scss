@@ -1,0 +1,13 @@
+$base_width: 1920;
+$base_height: 1080;
+@function vw($px) {
+  @return ($px / $base_width) * 100vw;
+}
+@function vh($px) {
+  @return ($px / $base_height) * 100vh;
+}
+#test{
+  width: vw(273);
+  height: vh(200);
+  background-color: #ff0000
+}
