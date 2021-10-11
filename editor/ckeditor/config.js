@@ -25,5 +25,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeButtons = 'Save,Templates,NewPage,ExportPdf,Preview,Print,Cut,Copy,Paste,PasteText,PasteFromWord,Find,Replace,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Strike,Subscript,Superscript,NumberedList,BulletedList,Outdent,Indent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Link,Unlink,Anchor,Flash,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Styles,Format,Font,ShowBlocks,About';
 	// 图片属性配置
 	config.image_previewText = ' ';
-	config.filebrowserImageUploadUrl= "http://localhost/blog/uploadEditorImage.aspx";
+	config.filebrowserImageUploadUrl= "http://localhost:1031/WSL/Image.ashx?action=default";
 };
