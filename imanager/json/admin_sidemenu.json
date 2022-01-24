@@ -1,0 +1,49 @@
+[
+    {
+        "text":"系统配置",
+        "iconCls":"fa fa-cog",
+        "children":[
+            {
+                "text":"菜单",
+                "iconCls":"fa fa-bars",
+                "url":"menu.htm"
+            },
+            {
+                "text":"权限",
+                "iconCls":"fa fa-gavel",
+                "url":""
+            },
+            {
+                "text":"角色",
+                "iconCls":"fa fa-user-circle-o",
+                "url":""
+            },
+            {
+                "text":"单位",
+                "iconCls":"fa fa-building",
+                "url":""
+            },
+            {
+                "text":"用户",
+                "iconCls":"fa fa-user",
+                "url":""
+            }
+        ]
+    },
+    {
+        "text":"业务统计",
+        "iconCls":"fa fa-bar-chart",
+        "children":[
+            {
+                "text":"订餐",
+                "iconCls":"fa fa-motorcycle",
+                "url":""
+            },
+            {
+                "text":"购物",
+                "iconCls":"fa fa-shopping-basket",
+                "url":""
+            }
+        ]
+    }
+]

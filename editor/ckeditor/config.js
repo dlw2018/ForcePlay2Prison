@@ -26,4 +26,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// 图片属性配置
 	config.image_previewText = ' ';
 	config.filebrowserImageUploadUrl= "http://localhost:1031/WSL/Image.ashx?action=default";
+	// config.filebrowserImageUploadUrl= "http://localhost:1688/CMSService/WSL/Image.ashx?action=default";
 };
