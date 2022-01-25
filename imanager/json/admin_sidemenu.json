@@ -11,7 +11,7 @@
             {
                 "text":"权限",
                 "iconCls":"fa fa-gavel",
-                "url":""
+                "url":"permission.htm"
             },
             {
                 "text":"角色",
