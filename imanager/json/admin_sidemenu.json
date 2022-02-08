@@ -16,12 +16,12 @@
             {
                 "text":"角色",
                 "iconCls":"fa fa-user-circle-o",
-                "url":""
+                "url":"role.htm"
             },
             {
                 "text":"单位",
                 "iconCls":"fa fa-building",
-                "url":""
+                "url":"unit.htm"
             },
             {
                 "text":"用户",

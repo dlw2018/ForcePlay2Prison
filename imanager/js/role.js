@@ -1,7 +1,7 @@
 function initDatagrid(){
     $('#dg').datagrid({
         method:'get',
-        url:'http://localhost/IManagerService/WSL/Config.ashx?action=permission',
+        url:'http://localhost/IManagerService/WSL/Config.ashx?action=role',
         rownumbers: true,
         idField:'code',
         fitColumns:true, // 宽度自适应，默认false
@@ -9,6 +9,7 @@ function initDatagrid(){
         columns:[[
             {field:'code',title:'代码',width:100},
             {field:'name',title:'名称',width:100},
+            {field:'permissions',title:'权限项',width:250}
         ]],
         frozenColumns:[[ 
             {field:'ck',checkbox:true} 
@@ -32,39 +33,38 @@ var saveType,saveParams;
 var primaryCode = '';
 function add(){
     $('#fm').form('clear');
-    $('#dlg').dialog('open').dialog('center').dialog('setTitle','新增权限项');
+    $('#dlg').dialog('open').dialog('center').dialog('setTitle','新增角色');
     saveType = 'add';
-    saveParams = '?action=permission_append';
+    saveParams = '?action=role_append';
 }
 function edit(){
-    var rows = $('#dg').datagrid('getChecked');
-    if (rows){
-        if (rows.length>1){$.messager.alert('提示','修改操作不支持多选。','warning');}
+    var ckItems = $('#dg').datagrid('getChecked');
+    if (ckItems && ckItems.length>0){
+        if (ckItems.length>1){$.messager.alert('提示','你想一起么，不行的。','warning');}
         else{
             $('#fm').form('clear');
-            $('#fm').form('load',rows[0]);
-            $('#dlg').dialog('open').dialog('center').dialog('setTitle','编辑权限项');
-            primaryCode = rows[0].code;
+            $('#fm').form('load',ckItems[0]);
+            $('#dlg').dialog('open').dialog('center').dialog('setTitle','编辑角色');
             saveType = 'edit';
-            saveParams = '?action=permission_update';
+            saveParams = '?action=role_update';
+            primaryCode = ckItems[0].code;
         }
     }
 }
 function remove(){
-    var rows = $('#dg').datagrid('getChecked');
-    if (rows){
-        $.messager.confirm('提示', '确定要删除吗？', function(r){
+    var ckItems = $('#dg').datagrid('getChecked');
+    if (ckItems && ckItems.length>0){
+        $.messager.confirm('提示','确定要删除么？',function(r){
             if (r){
                 primaryCode = '';
-                for(var i=0;i<rows.length;i++){
-                    primaryCode += "'"+rows[i].code+"',";
+                for(var i=0;i<ckItems.length;i++){
+                    primaryCode += "'"+ckItems[i].code+"',";
                 }
                 primaryCode = primaryCode.substring(0,primaryCode.length-1);
                 saveType = 'remove';
-                saveParams = '?action=permission_remove';
+                saveParams = '?action=role_remove';
                 save();
             }
-            else{}
         });
     }
 }
@@ -72,20 +72,18 @@ function save(){
     var saveData;
     var saveFlag = false;
     if (saveType=='add' || saveType=='edit'){
-        var permissionCode = $('#code').val();
-        var permissionName = $('#name').val();
-        if (permissionCode=='' || permissionName==''){$.messager.alert('提示','权限的代码和名称为必填项。','warning');}
+        var roleCode = $('#code').val();
+        var roleName = $('#name').val();
+        var rolePermissions = $('#permissions').val();
+        if (roleCode=='' || roleName=='' || rolePermissions==''){$.messager.alert('提示','角色的代码、名称和权限项为必填（选）项。','warning');}
         else{
             saveFlag = true;
-            saveData = 'pcode='+primaryCode+'&code='+permissionCode+'&name='+permissionName;
+            saveData = 'pcode='+primaryCode+'&code='+roleCode+'&name='+roleName+'&permissions='+rolePermissions;
         }
     }
     else if (saveType=='remove'){
-        if (primaryCode.length<=0){$.messager.alert('提示','请选择要删除的权限项。','warning');}
-        else{
-            saveFlag = true;
-            saveData = 'pcode='+primaryCode;
-        }
+        saveFlag = true;
+        saveData = 'pcode='+primaryCode;
     }
     else{$.messager.alert('提示','操作未定义。','warning');}
     if (saveFlag){
@@ -100,7 +98,7 @@ function save(){
                 var objResult = eval('('+result+')');
                 if (objResult.Success){
                     $('#dlg').dialog('close');
-                    $('#dg').datagrid('unselectAll');
+                    $('#dg').datagrid('uncheckAll');
                     $('#dg').datagrid('reload');
                 }
                 else{$.messager.alert('提示',objResult.Message,'warning');}
@@ -109,7 +107,7 @@ function save(){
                 console.log(error);
             }
          });
-    }
+    }   
 }
 function cancel(){$('#dlg').dialog('close');}
 $(function(){

@@ -9,7 +9,7 @@ function initTreeGrid(){
         rownumbers: true,
         columns:[[
             {field:'name',title:'名称',width:150},
-            {field:'iconCls',title:'ICON',width:120,formatter: function(value,row,index){
+            {field:'iconCls',title:'图标',width:120,formatter: function(value,row,index){
                 return '<i class="'+value+'"></i>';
             }},
             {field:'hyperlink',title:'链接地址',width:150},
