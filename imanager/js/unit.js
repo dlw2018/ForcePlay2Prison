@@ -30,9 +30,16 @@ function initDatagrid(){
         }]
     });
 }
-function add(){}
+function add(){
+    $('#fm').form('clear');
+    $('#dlg').dialog('open').dialog('center').dialog('setTitle','新增单位');
+}
 function edit(){}
 function remove(){}
+function save(){}
+function cancel(){
+    $('#dlg').dialog('close');
+}
 $(function(){
     initDatagrid();
 });
