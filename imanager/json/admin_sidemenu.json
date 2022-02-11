@@ -26,7 +26,7 @@
             {
                 "text":"用户",
                 "iconCls":"fa fa-user",
-                "url":""
+                "url":"user.htm"
             }
         ]
     },

@@ -1,15 +1,7 @@
-function loadCKEditor() {
-    if (!CKEDITOR.instances['logo']) {
-        CKEDITOR.replace('logo',{height:200,toolbar:[['Image']],resize_enabled:false,filebrowserImageUploadUrl:'http://localhost/IManagerService/WSL/Image.ashx?action=ck&width=0'});
-    } else {
-        CKEDITOR.instances.logo.destroy();
-        CKEDITOR.replace('logo',{height:200,toolbar:[['Image']],resize_enabled:false,filebrowserImageUploadUrl:'http://localhost/IManagerService/WSL/Image.ashx?action=ck&width=0'});
-    }
-}
 function initDatagrid(){
     $('#dg').datagrid({
         method:'get',
-        url:'http://localhost/IManagerService/WSL/Config.ashx?action=unit',
+        url:'http://localhost/IManagerService/WSL/Config.ashx?action=user',
         rownumbers: true,
         idField:'id',
         fitColumns:true, // 宽度自适应，默认false
@@ -17,8 +9,15 @@ function initDatagrid(){
         columns:[[
             {field:'id',title:'标识',width:80},
             {field:'name',title:'名称',width:150},
-            {field:'logo',title:'Logo',width:250},
-            {field:'address',title:'地址',width:250}
+            {field:'roleCode',title:'角色',width:100,formatter:function(value,row,index){
+                return row.roleName;
+            }},
+            {field:'menus',title:'菜单项',width:250},
+            {field:'unitID',title:'单位',width:250,formatter:function(value,row,index){
+                return row.unitName;
+            }},
+            {field:'createTime',title:'创建时间',width:120},
+            {field:'modifyTime',title:'修改时间',width:120}
         ]],
         frozenColumns:[[ 
             {field:'ck',checkbox:true} 
@@ -42,10 +41,12 @@ var saveType,saveParams;
 var primaryCode = '';
 function add(){
     $('#fm').form('clear');
-    $('#dlg').dialog('open').dialog('center').dialog('setTitle','新增单位');
-    CKEDITOR.instances.logo.setData('');
+    $('#name').textbox('readonly',false);
+    $('#pwd').passwordbox('enable');
+    $('#unitID').combobox('enable');
+    $('#dlg').dialog('open').dialog('center').dialog('setTitle','新增用户');
     saveType = 'add';
-    saveParams = '?action=unit_append';
+    saveParams = '?action=user_append';
 }
 function edit(){
     var ckItems = $('#dg').datagrid('getChecked');
@@ -54,14 +55,16 @@ function edit(){
         else{
             $('#fm').form('clear');
             $('#fm').form('load',ckItems[0]);
-            $('#dlg').dialog('open').dialog('center').dialog('setTitle','编辑单位');
-            var ckImage = CKEDITOR.instances.logo.getData();
-            if (ckImage==''){CKEDITOR.instances.logo.setData(ckItems[0].logo);}
+            $('#name').textbox('readonly',true);
+            $('#pwd').passwordbox('disable');
+            $('#unitID').combobox('disable');
+            $('#dlg').dialog('open').dialog('center').dialog('setTitle','编辑用户');
             saveType = 'edit';
-            saveParams = '?action=unit_update';
+            saveParams = '?action=user_update';
             primaryCode = ckItems[0].id;
         }
     }
+    else{}
 }
 function remove(){
     var ckItems = $('#dg').datagrid('getChecked');
@@ -74,27 +77,39 @@ function remove(){
                 }
                 primaryCode = primaryCode.substring(0,primaryCode.length-1);
                 saveType = 'remove';
-                saveParams = '?action=unit_remove';
+                saveParams = '?action=user_remove';
                 save();
             }
         });
     }
+    else{}
 }
 function save(){
     var saveData;
     var saveFlag = false;
-    if (saveType=='add' || saveType=='edit'){
-        var unitName = $('#name').val();
-        // var unitLogo = $('#logo').val();
-        var unitLogo = encodeURIComponent(CKEDITOR.instances.logo.getData().replace(/</g,'&lt;').replace(/>/g,'&gt;'));
-        var unitAddress = $('#address').val();
-        if (unitName==''){$.messager.alert('提示','单位名称为必填（选）项。','warning');}
+    if (saveType=='add'){
+        var userName = $('#name').val();
+        var userPwd = $('#pwd').val();
+        var roleCode = $('#roleCode').val();
+        var userMenu = $('#menus').val();
+        var userUnit = $('#unitID').val();
+        if (userName=='' || userPwd=='' || roleCode=='' || userMenu=='' || userUnit==''){$.messager.alert('提示','用户信息不完整，请检查。','warning');}
         else{
             saveFlag = true;
-            saveData = 'id='+primaryCode+'&name='+unitName+'&icon='+unitLogo+'&address='+unitAddress;
+            saveData = 'name='+userName+'&pwd='+userPwd+'&role='+roleCode+'&menu='+userMenu+'&unit='+userUnit;
         }
     }
-    else if(saveType=='remove'){
+    else if (saveType=='edit'){
+        var userName = $('#name').val();
+        var roleCode = $('#roleCode').val();
+        var userMenu = $('#menus').val();
+        if (userName=='' || roleCode=='' || userMenu==''){$.messager.alert('提示','用户信息不完整，请检查。','warning');}
+        else{
+            saveFlag = true;
+            saveData = 'id='+primaryCode+'&name='+userName+'&role='+roleCode+'&menu='+userMenu;
+        }
+    }
+    else if (saveType=='remove'){
         saveFlag = true;
         saveData = 'ids='+primaryCode;
     }
@@ -122,9 +137,7 @@ function save(){
          });
     }   
 }
-function cancel(){
-    $('#dlg').dialog('close');
-}
+function cancel(){$('#dlg').dialog('close');}
 $(function(){
     initDatagrid();
 });

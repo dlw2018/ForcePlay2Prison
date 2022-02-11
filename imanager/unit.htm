@@ -13,7 +13,7 @@
     </head>
     <body>
         <table id="dg"></table>
-        <div id="dlg" class="easyui-dialog" style="width:400px;height:550px;" data-options="buttons:'#btn_dlg',closed:true,modal:true">
+        <div id="dlg" class="easyui-dialog" style="width:400px;height:550px;" data-options="buttons:'#btn_dlg',closed:true,modal:true,onBeforeOpen:loadCKEditor">
             <form id="fm" method="POST" style="margin:0px;padding:5px 5px;">
                 <div style="margin-bottom: 5px;">
                     <input id="name" name="name" class="easyui-textbox" data-options="label:'名称:',labelPosition:'top',prompt:'必填'" style="width:100%">
@@ -32,9 +32,6 @@
             <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
             <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel()">取消</a>
         </div>
-        <script>
-            CKEDITOR.replace('logo',{height:200,toolbar:[['Image']],resize_enabled:false,filebrowserImageUploadUrl:'http://localhost/IManagerService/WSL/Image.ashx?action=ck&width=0'});
-        </script>
         <script src="js/unit.js"></script>
     </body>
 </html>
