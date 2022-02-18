@@ -12,6 +12,11 @@ function initDatagrid(){
             {field:'roleCode',title:'角色',width:100,formatter:function(value,row,index){
                 return row.roleName;
             }},
+            {field:'userType',title:'类型',width:100,formatter:function(value,row,index){
+                if (value=='M'){return '后台';}
+                else if (value=='F'){return '前端';}
+                else{return '未知';}
+            }},
             {field:'menus',title:'菜单项',width:250},
             {field:'unitID',title:'单位',width:250,formatter:function(value,row,index){
                 return row.unitName;
@@ -91,22 +96,24 @@ function save(){
         var userName = $('#name').val();
         var userPwd = $('#pwd').val();
         var roleCode = $('#roleCode').val();
+        var userType = $('#userType').val();
         var userMenu = $('#menus').val();
         var userUnit = $('#unitID').val();
-        if (userName=='' || userPwd=='' || roleCode=='' || userMenu=='' || userUnit==''){$.messager.alert('提示','用户信息不完整，请检查。','warning');}
+        if (userName=='' || userPwd=='' || roleCode=='' || userType=='' || userMenu=='' || userUnit==''){$.messager.alert('提示','用户信息不完整，请检查。','warning');}
         else{
             saveFlag = true;
-            saveData = 'name='+userName+'&pwd='+userPwd+'&role='+roleCode+'&menu='+userMenu+'&unit='+userUnit;
+            saveData = 'name='+userName+'&pwd='+userPwd+'&role='+roleCode+'&type='+userType+'&menu='+userMenu+'&unit='+userUnit;
         }
     }
     else if (saveType=='edit'){
         var userName = $('#name').val();
         var roleCode = $('#roleCode').val();
+        var userType = $('#userType').val();
         var userMenu = $('#menus').val();
-        if (userName=='' || roleCode=='' || userMenu==''){$.messager.alert('提示','用户信息不完整，请检查。','warning');}
+        if (userName=='' || roleCode=='' || userType=='' || userMenu==''){$.messager.alert('提示','用户信息不完整，请检查。','warning');}
         else{
             saveFlag = true;
-            saveData = 'id='+primaryCode+'&name='+userName+'&role='+roleCode+'&menu='+userMenu;
+            saveData = 'id='+primaryCode+'&name='+userName+'&role='+roleCode+'&type='+userType+'&menu='+userMenu;
         }
     }
     else if (saveType=='remove'){

@@ -55,10 +55,7 @@ function remove(){
                 saveParams = '?action=menu_remove';
                 save();
             }
-            else{
-                var row = $('#tg').treegrid('getSelected');
-                if (row){$('#tg').treegrid('unselect',row.id);}
-            }
+            else{if (row){$('#tg').treegrid('unselect',row.id);}}
         });
     }
 }
@@ -78,7 +75,8 @@ function save(){
         var menulink = $('#hyperlink').val();
         var menuSequence = $('#sequence').val();
         var menuPID = $('#pid').val();
-        if (menuName=='' || menulink==''){$.messager.alert('提示','菜单的标题和链接地址为必填项。','warning');}
+        if (menulink==''){menulink = 'blank.htm';}
+        if (menuName==''){$.messager.alert('提示','菜单的标题为必填项。','warning');}
         else {
             saveFlag = true;
             saveData = 'id='+menuID+'&name='+menuName+'&class='+menuClass+"&url="+menulink+"&seq="+menuSequence+"&pid="+menuPID;

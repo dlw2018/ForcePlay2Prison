@@ -6,27 +6,32 @@
             {
                 "text":"菜单",
                 "iconCls":"fa fa-bars",
-                "url":"menu.htm"
+                "hyperlink":"menu.htm"
             },
             {
                 "text":"权限",
                 "iconCls":"fa fa-gavel",
-                "url":"permission.htm"
+                "hyperlink":"permission.htm"
             },
             {
                 "text":"角色",
                 "iconCls":"fa fa-user-circle-o",
-                "url":"role.htm"
+                "hyperlink":"role.htm"
             },
             {
-                "text":"单位",
+                "text":"群组",
+                "iconCls":"fa fa-sitemap",
+                "hyperlink":"group.htm"
+            },
+            {
+                "text":"个体",
                 "iconCls":"fa fa-building",
-                "url":"unit.htm"
+                "hyperlink":"unit.htm"
             },
             {
                 "text":"用户",
                 "iconCls":"fa fa-user",
-                "url":"user.htm"
+                "hyperlink":"user.htm"
             }
         ]
     },
@@ -37,12 +42,12 @@
             {
                 "text":"订餐",
                 "iconCls":"fa fa-motorcycle",
-                "url":""
+                "hyperlink":""
             },
             {
                 "text":"购物",
                 "iconCls":"fa fa-shopping-basket",
-                "url":""
+                "hyperlink":""
             }
         ]
     }

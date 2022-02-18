@@ -12,7 +12,7 @@
     </head>
     <body>
         <table id="dg"></table>
-        <div id="dlg" class="easyui-dialog" style="width:350px;height:480px;" data-options="buttons:'#btn_dlg',closed:true,modal:true">
+        <div id="dlg" class="easyui-dialog" style="width:350px;height:500px;" data-options="buttons:'#btn_dlg',closed:true,modal:true">
             <form id="fm" method="POST" style="margin:0px;padding:5px 5px;">
                 <div style="margin-bottom: 5px;">
                     <input id="name" name="name" class="easyui-textbox" data-options="label:'名称:',labelPosition:'top',prompt:'必填'" style="width:100%">
@@ -22,6 +22,12 @@
                 </div>
                 <div style="margin-bottom: 5px">
                     <input id="roleCode" name="roleCode" class="easyui-combobox" data-options="url:'http://localhost/IManagerService/WSL/Config.ashx?action=role&type=B',method:'get',valueField:'code',textField:'name',panelHeight:'auto',editable:false,label:'角色:',labelPosition:'top',prompt:'必选'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 5px;">
+                    <select id="userType" name="userType" class="easyui-combobox" data-options="label:'类型:',labelPosition:'top',prompt:'必选',panelHeight:80,editable:false" style="width: 100%;">
+                        <option value="M">后台</option>
+                        <option value="F">前端</option>
+                    </select>
                 </div>
                 <div style="margin-bottom: 5px">
                     <input id="menus" name="menus" class="easyui-combotree" data-options="url:'http://localhost/IManagerService/WSL/Config.ashx?action=menu',method:'get',label:'菜单:',labelPosition:'top',prompt:'必选',multiple:true,cascadeCheck:false" style="width:100%">

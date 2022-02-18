@@ -1,15 +1,7 @@
-function loadCKEditor() {
-    if (!CKEDITOR.instances['logo']) {
-        CKEDITOR.replace('logo',{height:200,toolbar:[['Image']],resize_enabled:false,filebrowserImageUploadUrl:'http://localhost/IManagerService/WSL/Image.ashx?action=ck&width=0'});
-    } else {
-        CKEDITOR.instances.logo.destroy();
-        CKEDITOR.replace('logo',{height:200,toolbar:[['Image']],resize_enabled:false,filebrowserImageUploadUrl:'http://localhost/IManagerService/WSL/Image.ashx?action=ck&width=0'});
-    }
-}
 function initDatagrid(){
     $('#dg').datagrid({
         method:'get',
-        url:'http://localhost/IManagerService/WSL/Config.ashx?action=unit',
+        url:'http://localhost/IManagerService/WSL/Config.ashx?action=group',
         rownumbers: true,
         idField:'id',
         fitColumns:true, // 宽度自适应，默认false
@@ -17,11 +9,9 @@ function initDatagrid(){
         columns:[[
             {field:'id',title:'标识',width:80},
             {field:'name',title:'名称',width:150},
-            {field:'logo',title:'Logo',width:200},
-            {field:'address',title:'地址',width:250},
-            {field:'gid',title:'所属群组',width:150,formatter:function(value,row,index){
-                return row.gname;
-            }}
+            {field:'shareCode',title:'共享代码',width:100},
+            {field:'address',title:'地址',width:200},
+            {field:'createTime',title:'创建时间',width:150}
         ]],
         frozenColumns:[[ 
             {field:'ck',checkbox:true} 
@@ -45,10 +35,9 @@ var saveType,saveParams;
 var primaryCode = '';
 function add(){
     $('#fm').form('clear');
-    $('#dlg').dialog('open').dialog('center').dialog('setTitle','新增单位');
-    CKEDITOR.instances.logo.setData('');
+    $('#dlg').dialog('open').dialog('center').dialog('setTitle','新增群组');
     saveType = 'add';
-    saveParams = '?action=unit_append';
+    saveParams = '?action=group_append';
 }
 function edit(){
     var ckItems = $('#dg').datagrid('getChecked');
@@ -57,11 +46,9 @@ function edit(){
         else{
             $('#fm').form('clear');
             $('#fm').form('load',ckItems[0]);
-            $('#dlg').dialog('open').dialog('center').dialog('setTitle','编辑单位');
-            var ckImage = CKEDITOR.instances.logo.getData();
-            if (ckImage==''){CKEDITOR.instances.logo.setData(ckItems[0].logo);}
+            $('#dlg').dialog('open').dialog('center').dialog('setTitle','编辑群组');
             saveType = 'edit';
-            saveParams = '?action=unit_update';
+            saveParams = '?action=group_update';
             primaryCode = ckItems[0].id;
         }
     }
@@ -77,7 +64,7 @@ function remove(){
                 }
                 primaryCode = primaryCode.substring(0,primaryCode.length-1);
                 saveType = 'remove';
-                saveParams = '?action=unit_remove';
+                saveParams = '?action=group_remove';
                 save();
             }
         });
@@ -87,15 +74,13 @@ function save(){
     var saveData;
     var saveFlag = false;
     if (saveType=='add' || saveType=='edit'){
-        var unitName = $('#name').val();
-        // var unitLogo = $('#logo').val();
-        var unitLogo = encodeURIComponent(CKEDITOR.instances.logo.getData().replace(/</g,'&lt;').replace(/>/g,'&gt;'));
-        var unitAddress = $('#address').val();
-        var groupID = $('#gid').val();
-        if (unitName==''){$.messager.alert('提示','单位名称为必填（选）项。','warning');}
+        var groupName = $('#name').val();
+        var shareCode = $('#shareCode').val();
+        var groupAddress = $('#address').val();
+        if (groupName==''){$.messager.alert('提示','群组名称为必填项。','warning');}
         else{
             saveFlag = true;
-            saveData = 'id='+primaryCode+'&name='+unitName+'&icon='+unitLogo+'&address='+unitAddress+'&gid='+groupID;
+            saveData = 'id='+primaryCode+'&name='+groupName+'&scode='+shareCode+'&address='+groupAddress;
         }
     }
     else if(saveType=='remove'){
@@ -126,9 +111,7 @@ function save(){
          });
     }   
 }
-function cancel(){
-    $('#dlg').dialog('close');
-}
+function cancel(){$('#dlg').dialog('close');}
 $(function(){
     initDatagrid();
 });

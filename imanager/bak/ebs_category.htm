@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <title>ebs_category</title>
+        <link rel="stylesheet" type="text/css" href="easyui/themes/metro/easyui.css">
+        <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="css/global.css">
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+        <script type="text/javascript" src="easyui/jquery.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="easyui/jquery.cookie.js"></script>
+        <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+    </head>
+    <body>
+        <table id="dg"></table>
+        <div id="dlg" class="easyui-dialog" style="width:400px;height:650px;" data-options="buttons:'#btn_dlg',closed:true,modal:true,onBeforeOpen:loadCKEditor">
+            <form id="fm" method="POST" style="margin:0px;padding:5px 5px;">
+                <div style="margin-bottom: 5px;">
+                    <input id="cname" name="cname" class="easyui-textbox" data-options="label:'类别中名:',labelPosition:'left',prompt:'必填'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 5px;">
+                    <input id="ename" name="ename" class="easyui-textbox" data-options="label:'类别英名:',labelPosition:'left',prompt:'选填'" style="width:100%">
+                </div>
+                <div style="margin-bottom: 5px">
+                    <span>图片:</span>
+                    <textarea id="cimage" name="cimage" style="width:100%;height:250px"></textarea>
+                </div>
+                <div style="margin-bottom: 5px">
+                    <input id="shour" name="shour" class="easyui-numberspinner" value="0" data-options="label:'几时开始:',labelPosition:'left',prompt:'选填',min:0,max:23,increment:1" style="width:100%">
+                </div>
+                <div style="margin-bottom: 5px">
+                    <input id="sminute" name="sminute" class="easyui-numberspinner" value="0" data-options="label:'几分开始:',labelPosition:'left',prompt:'选填',min:0,max:59,increment:1" style="width:100%">
+                </div>
+                <div style="margin-bottom: 5px">
+                    <input id="ehour" name="ehour" class="easyui-numberspinner" value="23" data-options="label:'几时结束:',labelPosition:'left',prompt:'选填',min:0,max:23,increment:1" style="width:100%">
+                </div>
+                <div style="margin-bottom: 5px">
+                    <input id="eminute" name="eminute" class="easyui-numberspinner" value="59" data-options="label:'几分结束:',labelPosition:'left',prompt:'选填',min:0,max:59,increment:1" style="width:100%">
+                </div>
+                <div style="margin-bottom: 5px">
+                    <select id="ctype" name="ctype" class="easyui-combobox" data-options="label:'所属类型:',labelPosition:'left',prompt:'必选',panelHeight:80,editable:false" style="width:100%">
+                        <option value="DC">点餐</option>
+                        <option value="GW">购物</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div id="btn_dlg">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="cancel()">取消</a>
+        </div>
+        <script src="js/ebs_category.js"></script>
+    </body>
+</html>
